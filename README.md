@@ -1,4 +1,6 @@
-Github Timeline View -  is a coding project which takes a username of a github user and displays a visual card of the user consistsing of Name, Followers, Following, Repos count And alsoprovides a timeline of all the public repositories with some information. 
+Github Timeline View - 
+
+is a coding project which takes a username of a github user and displays a visual card of the user consistsing of Name, Followers, Following, Repos count And alsoprovides a timeline of all the public repositories with some information. 
 
 
 
