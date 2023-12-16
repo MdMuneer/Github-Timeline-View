@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Loading from "./Loading";
-import { FaGithub, FaCaretDown } from "react-icons/fa";
-import "dayjs/locale/es";
+import Loader from "./Loader";
+import { Icon } from "@iconify/react";
 import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
-const relativeTime = require("dayjs/plugin/relativeTime");
+const API_BASE_URL = "https://api.github.com/users/";
+
 dayjs.extend(relativeTime);
 
-//local storage
 const getLocalItems = () => {
-  let listOne = localStorage.getItem("detailCard");
-  let listTwo = localStorage.getItem("detailCardTop");
+  const listOne = localStorage.getItem("detailCard");
+  const listTwo = localStorage.getItem("detailCardTop");
 
   if (listOne && listTwo) {
-    return JSON.parse(
-      localStorage.getItem("detailCard") ||
-        localStorage.getItem("detailCardTop")
-    );
+    return JSON.parse(listOne || listTwo);
   } else {
     return [];
   }
+};
+
+const fetchUserDetails = (username) => {
+  return fetch(`${API_BASE_URL}${username}`).then((res) =>
+    res.json()
+  );
+};
+
+const fetchUserRepos = (username) => {
+  return fetch(`${API_BASE_URL}${username}/repos`).then((res) =>
+    res.json()
+  );
 };
 
 function App() {
@@ -35,28 +44,18 @@ function App() {
   const [repos, setRepos] = useState("");
   const [error, setError] = useState(null);
 
-  //getting the example api for the first screen
   useEffect(() => {
     if (localStorage.getItem("detailCardTop")) {
       setData(JSON.parse(localStorage.getItem("detailCardTop")));
       setReposDetails(JSON.parse(localStorage.getItem("detailCard")));
     } else {
-      fetch("https://api.github.com/users/example")
-        .then((res) => res.json())
-        .then((data) => {
-          setData(data);
-        });
+      fetchUserDetails("example").then((data) => {
+        setData(data);
+      });
     }
   }, []);
 
-  const setData = ({
-    name,
-    login,
-    followers,
-    following,
-    public_repos,
-    avatar_url,
-  }) => {
+  const setData = ({ name, login, followers, following, public_repos, avatar_url }) => {
     setName(name);
     setUserName(login);
     setFollowers(followers);
@@ -69,76 +68,45 @@ function App() {
     setUserInput(e.target.value);
   };
 
-  if (loading) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    Promise.all([
-      fetch(`https://api.github.com/users/${userInput}`),
-      fetch(`https://api.github.com/users/${userInput}/repos`),
-    ])
-      .then(function (responses) {
-        // Get a JSON object from each of the responses
-        return Promise.all(
-          responses.map(function (response) {
-            return response.json();
-          })
-        );
-      })
-      .then(function (data) {
-        {
-          /* would do something with both sets of data here*/
-        }
-        const dataFirst = data[0];
-        const dataSecond = data[1];
+    setLoading(true);
 
+    Promise.all([fetchUserDetails(userInput), fetchUserRepos(userInput)])
+      .then(([dataFirst, dataSecond]) => {
         if (dataFirst.message) {
           setError(dataFirst.message);
           setReposDetails([]);
-          setLoading(false);
         } else {
           setData(dataFirst);
           localStorage.setItem("detailCardTop", JSON.stringify(dataFirst));
           setReposDetails(dataSecond);
           localStorage.setItem("detailCard", JSON.stringify(dataSecond));
-
           setError(null);
-          setLoading(false);
         }
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
-  function renderRepo(repo) {
-    return (
-      <React.Fragment key={repo.id}>
-        <div className="wrapper">
-          <div className="eachrepo" key={repo.id}>
-            <h2 className="repo-name">{repo.name}</h2>
-            {
-              <p>
-                <b>{dayjs(new Date(repo.created_at)).fromNow()}</b>
-              </p>
-            }
-          </div>
-          <div className="repo-other">
-            <p className="repDetails">Forks Count - {repo.forks} </p>
-            <p className="repDetails">
-              {repo.language ? repo.language : "N/A"}
-            </p>
-          </div>
+  const renderRepo = (repo) => (
+    <React.Fragment key={repo.id}>
+      <div className="column">
+        <div className="cardHeader" key={repo.id}>
+          <h2 className="repo-name">{repo.name}</h2>
+          <span>{dayjs(new Date(repo.created_at)).fromNow()}</span>
         </div>
-      </React.Fragment>
-    );
-  }
+        <div className="repoName">
+          <p className="repDetails">Forks Count - {repo.forks} </p>
+          <p className="repDetails">{repo.language ? repo.language : "N/A"}</p>
+        </div>
+      </div>
+    </React.Fragment>
+  );
 
   return (
-    <div>
+    <div className="mainWrapper">
       <div>
         <div className="navbar">Get Github User's Timeline</div>
         <div className="search">
@@ -154,37 +122,43 @@ function App() {
           </button>
         </div>
       </div>
-      {error ? (
-        <h1>Ooops {error}...</h1>
-      ) : (
-        <div className="card">
-          <div className="image">
-            <img className="img" src={avatar} alt={name} />
-          </div>
-          <div className="details">
-            <h3>{name}</h3>
-            <h4>{userName}</h4>
-            <h4>{followers} Followers</h4>
-            <h4>{repos} Repositories</h4>
-            <h4>{following} Following</h4>
-          </div>
+      {loading ? (
+        <div>
+          <Loader />
         </div>
-      )}
-      {error ? (
-        ""
       ) : (
-        <div className="repos">
-          <div className="timline-heading">
-            <h1>@{userName}'s Timeline</h1>
-            <FaCaretDown className="i" />
-          </div>
-          {repoDetails.map(renderRepo)}
-        </div>
+        <>
+          {error ? (
+            <h1>Something Gone Wrong !!</h1>
+          ) : (
+            <div className="card">
+              <div className="image">
+                <img className="img" src={avatar} alt={name} />
+              </div>
+              <div className="details">
+                <span>{name}</span>
+                <span>{userName}</span>
+                <span>{followers} Followers</span>
+                <span>{repos} Repositories</span>
+                <span>{following} Following</span>
+              </div>
+            </div>
+          )}
+          {error ? null : (
+            <div className="repos">
+              <div className="timelineHeading">
+                <h1>@{userName}'s Timeline</h1>
+                <Icon icon="fluent:caret-down-24-filled" className="i" />
+              </div>
+              <div className="repoWrapper">{repoDetails.map(renderRepo)}</div>
+            </div>
+          )}
+        </>
       )}
       <footer className="footer">
         <h2 className="footers">Made By Muneer</h2>
         <a href="https://github.com/MdMuneer">
-          <FaGithub className="github" />
+          <Icon icon="devicon:github" className="github" />
         </a>
       </footer>
     </div>
