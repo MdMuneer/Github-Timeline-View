@@ -64,6 +64,12 @@ a:active {
   font-weight: 500;
 }
 
+@media screen and (max-width: 600px) {
+  .navbar {
+    font-size: 18px;
+  }
+}
+
 .search {
   display: flex;
   justify-content: center;
@@ -165,6 +171,13 @@ h4 {
   cursor: pointer;
   font-weight: 600;
   border-radius: 10px;
+  text-wrap: nowrap;
+}
+
+@media screen and (max-width: 600px) {
+  .btn {
+    font-size: 12px;
+  }
 }
 
 .btn:hover {
