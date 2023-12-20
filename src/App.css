@@ -184,6 +184,12 @@ h4 {
   border: 1px solid;
 }
 
+@media screen and (max-width: 600px) {
+  .column {
+    width: 300px;
+  }
+}
+
 .repoWrapper {
   display: flex;
   flex-wrap: wrap;
