@@ -1,4 +1,4 @@
-GitHub Timeline View
+# [GitHub Timeline View](https://github-timelinew-viewer.netlify.app/)
 
 This coding project creates a visual card for a GitHub user, showcasing their Name, Followers, Following, and Repos count. Additionally, it offers a timeline featuring information about all their public repositories.
 Features
