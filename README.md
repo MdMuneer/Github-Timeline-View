@@ -1,27 +1,20 @@
-Github Timeline View - 
+GitHub Timeline View
 
 This coding project creates a visual card for a GitHub user, showcasing their Name, Followers, Following, and Repos count. Additionally, it offers a timeline featuring information about all their public repositories.
+Features
 
+    Visual card displaying GitHub user details
+    Timeline view of public repositories with creation dates and descriptions
 
+Technologies Used
 
+    React.js
+    CSS
+    GitHub API
 
-In the project directory, you can run:
+How It Works
 
-### `npm start`
+The project utilizes React.js to create a user interface for displaying GitHub user details and their public repositories. It fetches data from the GitHub API and organizes it into a visual timeline.
+Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
+To use this project, simply input a GitHub username, and the application will generate a visual card with user details and a timeline of their public repositories.
