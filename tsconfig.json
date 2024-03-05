@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "lib": ["dom", "dom.iterable", "esnext", "ES2017"],
     "target": "ESNext",
     "types": ["vite/client"],
     "isolatedModules": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "useUnknownInCatchVariables": false,
   }
 }
