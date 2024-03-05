@@ -7,9 +7,10 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   const { repositories, loading } = usePopularRepositories();
+  const wrapperClass = `${styles.wrapper} ${styles["slide-enter-content"]}`;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={wrapperClass}>
       <div className={styles.body}>
         <SearchBanner />
         <div className={styles.subWrapper}>

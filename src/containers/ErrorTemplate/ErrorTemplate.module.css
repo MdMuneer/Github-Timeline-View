@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 70vh;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.content .textMessage {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.linkBack {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+}
+
+.linkBack:hover {
+  background-color: #7566ff;
+}
+
+@media screen and (max-width: 600px) {
+  .artwork {
+    height: 300px;
+    width: 300px;
+  }
+}
