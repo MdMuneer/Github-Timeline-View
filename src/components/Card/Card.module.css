@@ -1,0 +1,28 @@
+.card {
+  width: 300px;
+  height: 120px;
+  border: 1px solid #a1824a;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: whitesmoke;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.header {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.value {
+  font-size: 16px;
+  color: #a1824a;
+}

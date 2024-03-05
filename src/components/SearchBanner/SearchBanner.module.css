@@ -1,0 +1,108 @@
+.wrapper {
+  width: 500px;
+  height: 500px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  gap: 10px;
+  padding: 20px;
+  background: url("../../assets/banner.png") no-repeat;
+  background-size: contain;
+  color: white;
+}
+
+.header {
+  font-size: 42px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: inherit;
+}
+
+.subHeader {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.searchBar {
+  margin: 60px 10px 20px;
+}
+
+.searchInput {
+  border: none;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+}
+
+.searchInput::placeholder {
+  color: #a1824a;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.btn {
+  width: 70px;
+  height: 32px;
+  background: #009963;
+  color: white;
+  margin-left: -80px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #008753;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  cursor: not-allowed;
+}
+
+.footer {
+  text-align: center;
+  font-weight: 500;
+}
+
+.example {
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    height: 410px;
+  }
+
+  .header {
+    font-size: 32px;
+  }
+
+  .searchBar {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .wrapper {
+    background: #afa195;
+    width: auto;
+    height: auto;
+    margin: 20px;
+  }
+}

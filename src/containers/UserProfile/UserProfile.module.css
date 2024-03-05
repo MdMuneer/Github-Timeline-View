@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 40px;
+}
+
+.subContainer {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.cardSubWrapper {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.username {
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  min-width: 40vw;
+}
