@@ -31,10 +31,33 @@
   font-weight: 500;
 }
 
+.usernameSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.avatarSection {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
 .username {
   font-size: 42px;
   font-weight: 500;
-  margin-bottom: 30px;
 }
 
 .loading {
@@ -42,4 +65,27 @@
   justify-content: center;
   margin: 40px;
   min-width: 40vw;
+}
+
+.backBtn {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.backBtn:hover {
+  color: #a1824a;
+}
+
+@media screen and (max-width: 600px) {
+  .usernameSection {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+  }
+
+  .username {
+    font-size: 22px;
+    font-weight: 500;
+  }
 }

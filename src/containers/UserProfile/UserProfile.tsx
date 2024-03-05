@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 import useUserDetails from "../../utils/hooks/useUserDetails";
 import Loader from "../../components/Loader/Loader";
@@ -14,7 +15,7 @@ const UserProfile = () => {
   const { username } = useParams<{ username: string }>();
 
   const { user, repos, loading } = useUserDetails(username ?? "");
-  const { followers, created_at } = user as any;
+  const { followers, created_at, avatar_url } = user as any;
   const JoinedAt = formatDate(created_at);
 
   if (loading) {
@@ -28,7 +29,15 @@ const UserProfile = () => {
   return (
     <div className={styles.container}>
       <div className={styles.subContainer}>
-        <span className={styles.username}>@{username}</span>
+        <div className={styles.usernameSection}>
+          <div className={styles.avatarSection}>
+            <img src={avatar_url} className={styles.avatar}></img>
+            <span className={styles.username}>@{username}</span>
+          </div>
+          <Link to="/" className={styles.backBtn}>
+            Back to Home
+          </Link>
+        </div>
         <span className={styles.header}>Overview</span>
         <div className={styles.cardSubWrapper}>
           <Card
