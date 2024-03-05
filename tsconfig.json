@@ -2,15 +2,20 @@
   "compilerOptions": {
     "outDir": "dist",
     "allowJs": true,
-    "lib": ["dom", "dom.iterable", "esnext", "ES2017"],
-    "target": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "target": "ES2020",
     "types": ["vite/client"],
     "isolatedModules": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "downlevelIteration": true,
     "useUnknownInCatchVariables": false,
-  }
+    "module": "ESNext",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "include": ["src"]
 }
