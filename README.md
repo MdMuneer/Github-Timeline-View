@@ -9,8 +9,10 @@ Features
 Technologies Used
 
     React.js
-    CSS
+    CSS Modules
     GitHub API
+    vite
+    
 
 How It Works
 
