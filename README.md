@@ -22,7 +22,7 @@ Usage
 
 To use this project, simply input a GitHub username, and the application will generate a visual card with user details and a timeline of their public repositories.
 
-#Screenshots
+# Screenshots
 
 
 <img width="1426" alt="Screenshot 2024-03-06 at 1 31 34 AM" src="https://github.com/MdMuneer/Github-Timeline-View/assets/31310562/0ee3743e-0d47-4e36-b0e0-d97c0db09a41">
