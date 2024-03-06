@@ -24,6 +24,10 @@
   padding: 10px;
 }
 
+.error {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .subWrapper {
     margin-left: 20px;

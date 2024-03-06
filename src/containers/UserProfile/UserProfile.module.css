@@ -18,12 +18,23 @@
   margin-bottom: 100px;
 }
 
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .cardSubWrapper {
   display: flex;
   gap: 10px;
-  margin: 20px 0;
   flex-wrap: wrap;
-  width: fit-content;
+}
+
+.timelineContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
 }
 
 .header {

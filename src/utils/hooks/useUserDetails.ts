@@ -7,36 +7,37 @@ const useUserDetails = (username: string) => {
   const [user, setUser] = useState([]);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       if (username) {
         try {
           // Fetch user details
-          const userDetailsResponse = await axios.get(`${API_BASE_URL}/${username}`);
+          const userDetailsResponse = await axios.get(
+            `${API_BASE_URL}/${username}`
+          );
           setUser(userDetailsResponse.data);
-          
+
           // Fetch user repositories
-          const reposResponse = await axios.get(`${API_BASE_URL}/${username}/repos`);
+          const reposResponse = await axios.get(
+            `${API_BASE_URL}/${username}/repos`
+          );
           setRepos(reposResponse.data);
-          
+
           setLoading(false);
         } catch (error) {
           console.error("Error fetching user details:", error);
+          setError(error);
           setLoading(false);
         }
       }
     };
 
     fetchUserDetails();
+  }, [username]);
 
-    // Cleanup function (optional)
-    return () => {
-      // You can perform cleanup actions here if needed
-    };
-  }, [username]); // Include username in dependency array to trigger fetch when it changes
-
-  return { user, repos, loading };
+  return { user, repos, loading, error };
 };
 
 export default useUserDetails;

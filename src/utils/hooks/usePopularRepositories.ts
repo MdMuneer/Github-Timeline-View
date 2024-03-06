@@ -6,6 +6,7 @@ const API_BASE_URL = "https://api.github.com/search/repositories";
 const usePopularRepositories = () => {
   const [repositories, setRepositories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const fetchTrendingRepositories = async () => {
@@ -18,18 +19,14 @@ const usePopularRepositories = () => {
       } catch (error) {
         console.error("Error fetching trending repositories:", error);
         setLoading(false);
+        setError(error);
       }
     };
 
     fetchTrendingRepositories();
-
-    // Cleanup function (optional)
-    return () => {
-      // You can perform cleanup actions here if needed
-    };
   }, []);
 
-  return { repositories, loading };
+  return { repositories, loading, error };
 };
 
 export default usePopularRepositories;

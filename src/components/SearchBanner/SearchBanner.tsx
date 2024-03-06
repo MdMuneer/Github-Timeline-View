@@ -17,7 +17,6 @@ const SearchBanner = () => {
     setSearchValue("octocat");
   };
 
-  console.log(searchValue);
   return (
     <div className={styles.wrapper}>
       <span className={styles.header}>Explore Github Timelines</span>
