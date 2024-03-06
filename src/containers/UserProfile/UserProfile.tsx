@@ -16,7 +16,6 @@ import styles from "./UserProfile.module.css";
 
 const UserProfile = () => {
   const { username } = useParams<{ username: string }>();
-  console.log("reached");
   const { user, repos, loading, error } = useUserDetails(username ?? "");
   const { userEvents } = useUserEvents(username ?? "");
 
@@ -86,16 +85,15 @@ const UserProfile = () => {
                 header={"Followers"}
                 value={followers}
               />
-              {bio ||
-                (blog && (
-                  <Card
-                    icon={
-                      <Icon icon="lucide:square-pen" width={20} height={20} />
-                    }
-                    header={bio ? "Bio" : "Blog"}
-                    value={bio ?? blog}
-                  />
-                ))}
+              {(bio || blog) && (
+                <Card
+                  icon={
+                    <Icon icon="lucide:square-pen" width={20} height={20} />
+                  }
+                  header={bio ? "Bio" : "Blog"}
+                  value={bio ?? blog}
+                />
+              )}
             </div>
           </div>
           {userEvents && <Timeline userEvents={userEvents} />}

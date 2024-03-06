@@ -6,7 +6,7 @@ import formatDate from "../../utils/hooks/getFormattedDate";
 import { githubEvents } from "../../utils/events";
 import styles from "./Timeline.module.css";
 
-const EVENTS_COUNT = 6;
+const EVENTS_COUNT = 5;
 
 interface TimelineProps {
   userEvents: any;
@@ -19,7 +19,10 @@ const Timeline: React.FC<TimelineProps> = ({ userEvents }) => {
       <div className={styles.elementWrapper}>
         {userEvents.slice(0, EVENTS_COUNT).map((event, index) => {
           const { created_at, type, repo } = event;
+          const repoUrl = `https://www.github.com/${repo.name}`;
+
           const eventDescription = `${githubEvents[type]?.description}`;
+          const hasEventDescription = eventDescription !== "undefined";
 
           return (
             <div className={styles.element}>
@@ -28,11 +31,16 @@ const Timeline: React.FC<TimelineProps> = ({ userEvents }) => {
                 <div className={styles.line}></div>
               </div>
               <span key={index} className={styles.description}>
-                {eventDescription}{" "}
-                <Link to={repo.url} className={styles.url}>
-                  {repo.name}{" "}
-                  <Icon icon="iconamoon:link-external-fill" color=" #867a2d" />
-                </Link>
+                {hasEventDescription ? eventDescription : "Private commit"}{" "}
+                {hasEventDescription && (
+                  <Link to={repoUrl} target="_blank" className={styles.url}>
+                    {repo.name}{" "}
+                    <Icon
+                      icon="iconamoon:link-external-fill"
+                      color=" #867a2d"
+                    />
+                  </Link>
+                )}
               </span>
             </div>
           );
