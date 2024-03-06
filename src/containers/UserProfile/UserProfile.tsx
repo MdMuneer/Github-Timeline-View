@@ -96,7 +96,7 @@ const UserProfile = () => {
               )}
             </div>
           </div>
-          {userEvents?.length && <Timeline userEvents={userEvents} />}
+          {userEvents?.length > 0 && <Timeline userEvents={userEvents} />}
         </div>
         <div className={styles.wrapper}>
           <List
